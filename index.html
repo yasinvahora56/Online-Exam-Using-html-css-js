@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Exam Using html,css and js</title>
     <style>
-        /* Container Styles */
+         /* Container Styles */
         
         #quiz-container {
             max-width: 800px;
@@ -61,7 +61,7 @@
         #navigation-buttons {
             display: flex;
             gap: 10px;
-            margin: -82px 0;
+            margin: -72px 0;
             padding: 10px;
             background-color: white;
             border-radius: 10px;
@@ -100,7 +100,7 @@
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 0 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
         /* Dropdown Question Styles */
@@ -109,7 +109,7 @@
             margin: 20px 0;
         }
         
-        .dropdown-question h3 {
+        .dropdown-question h6 {
             color: #2c3e50;
             margin-bottom: 15px;
         }
@@ -157,7 +157,7 @@
         
         .dropdown-container select {
             flex: 1;
-            max-width: 45%;
+            max-width: 95%;
             padding: 8px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -165,26 +165,25 @@
         }
         
         select {
+            width: 30%;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 16px;
             color: #2c3e50;
+					margin-left: 20px;
         }
+  /* Image Question Styles */
         
         .image-question {
-            display: flex;
-            gap: 30px;
-            align-items: flex-start;
-            margin: 20px 0;
+            display: block;
+            max-width: 100%;
+            height: 500px;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
         
-        .question-image {
-            flex: 0 0 50%;
-            max-width: 500px;
-        }
-        
-        .question-image img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        
+         
         .answer-options {
             flex: 1;
         }
@@ -206,6 +205,13 @@
             text-align: center;
             color: #e74c3c;
         }
+
+#instruction {
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+						color:red;
+        }
         
         #score-display {
             text-align: center;
@@ -214,58 +220,49 @@
             color: #2c3e50;
         }
         
-        .question-container img {
-            max-width: 20%;
-            max-height: 300px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            object-fit: contain;
-            display: block;
-            margin-bottom: 11px;
-        }
+        /* Style for question images */
+.question-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
         
-        #question-navigation {
-            display: flex;
-            /* Inline-flex ko replace kare flex se */
-            flex-wrap: wrap;
-            /* Buttons ko wrap hone de agar space kam ho */
-            gap: 5px;
-            /* Buttons ke beech ka gap */
-            justify-content: center;
-            /* Buttons ko center align kare */
-            padding: 5px;
-            /* Navigation container ke andar padding */
-        }
-        
-        #question-navigation .question-nav-button {
-            width: 40px;
-            /* Button ki width */
-            height: 40px;
-            /* Button ki height */
-            background-color: #3498db;
-            /* Button ka background color */
-            color: white;
-            /* Text color */
-            text-align: center;
-            /* Text ko center align kare */
-            line-height: 40px;
-            /* Text vertically center align hoga */
-            border: none;
-            /* Border remove kare */
-            border-radius: 8px;
-            /* Rounded corners */
-            cursor: pointer;
-            /* Pointer cursor on hover */
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            /* Hover effects */
-        }
-        
-        #question-navigation .question-nav-button:hover {
-            background-color: #2980b9;
-            /* Hover par background color change */
-            transform: scale(1.1);
-            /* Button slightly enlarge kare */
-        }
+       #question-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    padding: 5px;
+}
+
+#question-navigation .question-nav-button {
+    width: 25px;
+    height: 25px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    line-height: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 10px;
+    
+    /* Center the text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Adjust font size */
+    font-size: 12px;
+}
+
+#question-navigation .question-nav-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
         
         .lightbox {
             display: none;
@@ -340,31 +337,41 @@
                 opacity: 0;
             }
         }
+
+/* Prevent text selection */
+body {
+    -webkit-user-select: none; /* For Safari and Chrome */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For IE10+ */
+    user-select: none; /* Standard syntax */
+}
     </style>
 </head>
 
 <body>
 
-    <!-- Instruction Page -->
-    <div id="instruction-page" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f0f0; flex-direction: column;">
+   <!-- Instruction Page -->
+    <div id="instruction-page" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: white; flex-direction: column;">
         <h2>Quiz Instructions</h2>
         <p style="max-width: 600px; text-align: left; font-size: 18px; color: #333;">
             Welcome to the quiz! Here are some quick instructions:
-            <br><br> 1. The quiz consists of multiple-choice and dropdown questions.<br> 2. Answer each question carefully and navigate using "Next" and "Previous".<br> 3. You can flag questions for review.<br> 4. You Need 60% Marks for Pass the Quiz<br><br>            Press "Start Quiz" to begin. Good luck!
+            <br><br> 1. The quiz consists of multiple-choice and dropdown questions.<br> 2. Answer each question carefully and navigate using "Next" and "Previous".<br> 3. You can flag questions for review.<br> 4. You Need 60% Marks to Pass the Quiz<br> 5. After submitting, the result will be displayed at the bottom.<br>6. To Retake,Click on the Reset Button<br>  
+            <br> Press "Start Quiz" to begin. <br>
+					<b>Good luck!👍</b>
         </p>
         <div style="display: flex;">
-            <button onclick="startQuiz()" style="padding: 10px 20px; font-size: 18px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Start Quiz</button>
-            <button id="readPdfBtn" style="padding: 10px 20px; margin-left: 10px; font-size: 16px; cursor: pointer; background-color: #28a745; color: white; border: none; border-radius: 5px;">
-            Read the PDF
-        </button>
+            <button id="startQuizBtn" onclick="startQuiz()" style="padding: 10px 20px; font-size: 18px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Start Quiz</button>
+<!--             <button id="readPdfBtn" style="padding: 10px 20px; margin-left: 10px; font-size: 16px; cursor: pointer; background-color: #28a745; color: white; border: none; border-radius: 5px;"> -->
+<!--             Read the PDF
+        </button> -->
         </div>
     </div>
 
 
     <div id="quiz-container">
         <div class="header-content">
-            <div class="title">Online Examination</div>
-            <div id="timer">45:00</div>
+            <div class="title">A to Z Mocks1</div>
+            <div id="timer">25:00</div>
         </div>
         <div id="progress-bar-container">
             <div id="progress-bar"></div>
@@ -380,7 +387,7 @@
         <div id="navigation-buttons">
             <button id="prevButton" class="navigation-button prev">Previous</button>
             <button id="nextButton" class="navigation-button next">Next</button>
-            <button id="resetButton" class="navigation-button reset">Reset</button>
+            <button id="resetButton" class="navigation-button reset" style="background-color:red;">Reset</button>
             <button id="submitButton" class="navigation-button submit" type="button" onclick="submitQuiz(event)">Submit</button>
             <button id="flagButton" class="flag-button">🚩 Flag</button>
         </div>
@@ -392,15 +399,16 @@
             <button id="reviewButton" class="review-button" style="display:none;">Review Answers</button>
         </div>
         <div id="lightbox" class="lightbox">
-            <a href="#" id="lightbox-close" class="lightbox-close">&times;</a>
+            <a href="#" id="lightbox-close" class="lightbox-close">×</a>
             <img id="lightbox-img" src="" alt="Lightbox Image">
         </div>
-        <div id="result-section">
-            <div id="score-display"></div>
-            <div id="user-answers"></div>
-            <div id="congratulations" style="display:none; color: green;">Congratulations! You scored above 60%!</div>
-            <div id="try-again" style="display:none; color: red;">Try Again!</div>
-        </div>
+        <!-- <div id="result-section"> -->
+        <div id="score-display"></div>
+        <div id="instruction"></div>
+        <div id="user-answers"></div>
+        <div id="congratulations" style="display:none; color: green;">Congratulations! You scored above 60%!</div>
+        <div id="try-again" style="display:none; color: red;">Try Again!</div>
+    </div>
     </div>
 
 
@@ -408,8 +416,9 @@
 
 
     <script>
-        const questions = [{
-                question: 'Q1.<h8> Select correct grid reference and page number for the following.</h8><b>Butler Ho. E14?</b>',
+         const questions = [{
+                question:'<h8 style="font-size: 18px;">Q1.  Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Butler Ho. E14?</b>',
+
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '8T', '4B', '30Ka', '7K'],
@@ -422,7 +431,7 @@
             },
 
             {
-                question: 'Q2.<h8> Select correct grid reference and page number for the following.</h8><b>Empire Cinema Slough?</b>',
+                question: '<h8 style="font-size: 18px;">Q2. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Empire Cinema Slough?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '8B', '6B', '40M', '18P'],
@@ -435,7 +444,7 @@
             },
 
             {
-                question: 'Q3.<h8> Select correct grid reference and page number for the following.</h8><b>The O2?</b>',
+                question: '<h8 style="font-size: 18px;">Q3.Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">The O2?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '46Yb', '39Be', '44Gc', '28Ca'],
@@ -448,7 +457,7 @@
             },
 
             {
-                question: 'Q4.<h8> Select correct grid reference and page number for the following.</h8><b>SOHO?</b>',
+                question: '<h8 style="font-size: 18px;">Q4. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">SOHO?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '48Ja', '69Za', '45Sa', '44Lb'],
@@ -461,7 +470,7 @@
             },
 
             {
-                question: 'Q5.<h8> Select correct grid reference and page number for the following.</h8><b>Neasden Station (Underground)?</b>',
+                question: '<h8 style="font-size: 18px;">Q5. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Neasden Station (Underground)?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '48Hb', '69Be', '36Va', '36Ua'],
@@ -476,7 +485,7 @@
 
 
             {
-                question: 'Q6.<h8> Select correct grid reference and page number for the following.</h8><b>HAMMERSMITH HOSPITAL?</b>',
+                question: '<h8 style="font-size: 18px;">Q6. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">HAMMERSMITH HOSPITAL?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '34Ha', '44Wa', '40Wa', '34Sv'],
@@ -489,7 +498,7 @@
             },
 
             {
-                question: 'Q7.<h8> Select correct grid reference and page number for the following.</h8><b>Farm Rd. TW18: Staines?</b>',
+                question: '<h8 style="font-size: 18px;">Q7. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Farm Rd. TW18: Staines?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '63F', '69K', '73K', '65K'],
@@ -502,7 +511,7 @@
             },
 
             {
-                question: 'Q8.<h8> Select correct grid reference and page number for the following.</h8><b>7 July Memorial?</b>',
+                question: '<h8 style="font-size: 18px;">Q8. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">7 July Memorial?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '46Jb', '49Ja', '80Mb', '78Jb'],
@@ -515,7 +524,7 @@
             },
 
             {
-                question: 'Q9.<h8> Select correct grid reference and page number for the following.</h8><b>BLUEWATER?</b>',
+                question: '<h8 style="font-size: 18px;">Q9. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">BLUEWATER?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '36Eb', '39Be', '60Vd', '67Eb'],
@@ -528,7 +537,7 @@
             },
 
             {
-                question: 'Q10.<h8> Select correct grid reference and page number for the following.</h8><b>The Hub Westminster?</b>',
+                question: '<h8 style="font-size: 18px;">Q10. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">The Hub Westminster?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '46Yb', '40Hb', '40Ma', '48Pj'],
@@ -541,7 +550,7 @@
             },
 
             {
-                question: 'Q11.<h8> Select correct grid reference and page number for the following.</h8><b>HEATHROW AIRPORT Terminal 5?</b>',
+                question: '<h8 style="font-size: 18px;">Q11. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">HEATHROW AIRPORT Terminal 5?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '42L', '47Lb', '42Ha', '55L'],
@@ -554,7 +563,7 @@
             },
 
             {
-                question: 'Q12.<h8> Select correct grid reference and page number for the following.</h8><b>Head St.E1?</b>',
+                question: '<h8 style="font-size: 18px;">Q12. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Head St.E1?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '51Zc', '44Zb', '40Ma', '52Zb'],
@@ -567,7 +576,7 @@
             },
 
             {
-                question: 'Q13.<h8> Select correct grid reference and page number for the following.</h8><b>HEATHROW Terminal 4 Station (Rail)?</b>',
+                question: '<h8 style="font-size: 18px;">Q13. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">HEATHROW Terminal 4 Station (Rail)?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '28Wc', '29Be', '58S', '28Wg'],
@@ -580,7 +589,7 @@
             },
 
             {
-                question: 'Q14.<h8> Select correct grid reference and page number for the following.</h8><b>Abbey Ct SE6?</b>',
+                question: '<h8 style="font-size: 18px;">Q14. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Abbey Ct SE6?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '58Cc', '69Be', '42Cb', '58Pj'],
@@ -593,7 +602,7 @@
             },
 
             {
-                question: 'Q15.<h8> Select correct grid reference and page number for the following.</h8><b>Dalston Junction (Overground)?</b>',
+                question: '<h8 style="font-size: 18px;">Q15. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Dalston Junction (Overground)?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '47Ab', '37Vb', '46Ba', '48Ba'],
@@ -606,7 +615,7 @@
             },
 
             {
-                question: 'Q16.<h8> Select correct grid reference and page number for the following.</h8><b>Lambert Way N12?</b>',
+                question: '<h8 style="font-size: 18px;">Q16. Select correct grid reference and page number for the following.</h8><b style="font-size: 19px;">Lambert Way N12?</b>',
                 type: 'dropdown',
                 options: {
                     grid: ['Select an answer', '47Ab', '49Ke', '22Ab', '22Eb'],
@@ -619,42 +628,42 @@
             },
 
             {
-                question: 'Q17.<h8>Use A-Z  To identify the closest station to each location.</h8><b> Blackheath Concert Halls?</b>',
+                question: '<h8 style="font-size: 18px;">Q17.Use A-Z  To identify the closest station to each location.</h8><b style="font-size: 19px;"> Blackheath Concert Halls?</b>',
                 type: 'radio',
                 options: ['TEMPLE', 'Maze Hill', 'BLACKHEATH', 'kIDBROOKE '],
                 correctAnswer: 'BLACKHEATH'
             },
 
             {
-                question: 'Q18.<h8>Use A-Z  To identify the closest station to each location.</h8><b>Nescot Sports Centre?</b>',
+                question: '<h8 style="font-size: 18px;">Q18. Use A-Z  To identify the closest station to each location.</h8><b style="font-size: 19px;">Nescot Sports Centre?</b>',
                 type: 'radio',
                 options: ['Epsom', 'Ewell East', 'Brixton', 'Epsom Down'],
                 correctAnswer: 'Ewell East'
             },
 
             {
-                question: 'Q19. <h8><b> Using the Key to Map Pages, which of these Counties Borders London. </b>(Select all the correct option)',
+                question: '<h8 style="font-size: 18px;">Q19.<b> Using the Key to Map Pages, which of these Counties Borders London. </b> <text style="color:red;">(Select all the correct option)</text>',
                 type: 'checkbox',
                 options: ['ESSEX', 'KENT', 'HARLOW', 'SURREY', 'BRACKNELL'],
                 correctAnswer: ['KENT', 'SURREY', 'ESSEX']
             },
 
             {
-                question: 'Q20. <h8><b> Which of these Motorways cross the M25-</b> (Select all the correct option)',
+                question: ' <h8 style="font-size: 18px;">Q20.<b> Which of these Motorways cross the M25-</b> <text style="color:red;">(Select all the correct option)</text>',
                 type: 'checkbox',
                 options: ['M4', 'M11', 'M20', 'M40', 'M23'],
                 correctAnswer: ['M4', 'M11', 'M23', 'M40']
             },
 
             {
-                question: 'Q21.<h8>Using the key map pages and the index, From Central London which direction is</h8><b>Hartley?</b>',
+                question: '<h8 style="font-size: 18px;">Q21.Using the key map pages and the index, From Central London which direction is</h8><b style="font-size: 19px;">Hartley?</b>',
                 type: 'radio',
                 options: ['South West', 'West', 'South East', 'East'],
                 correctAnswer: 'South East'
             },
 
             {
-                question: 'Q22.<h8>Using the key map pages and the index, what is the  nearest Motorway to</h8><b>Noak Hill?</b>',
+                question: '<h8 style="font-size: 18px;">Q22. Using the key map pages and the index, what is the  nearest Motorway to</h8><b style="font-size: 19px;">Noak Hill?</b>',
                 type: 'radio',
                 options: ['M26', 'M11', 'M25', 'M20'],
                 correctAnswer: 'M25'
@@ -662,14 +671,14 @@
 
 
             {
-                question: 'Q23.<h8>Using the Key to Map Pages, Which pages will you need to use to plan the most direct route between </h8><b>junction 30 and junction 26 of the M25?</b>',
+                question: '<h8 style="font-size: 18px;">Q23.Using the Key to Map Pages, Which pages will you need to use to plan the most direct route between </h8><b style="font-size: 19px;">junction 30 and junction 26 of the M25?</b>',
                 type: 'radio',
                 options: ['98-78-58-40-39-37-38-22-21', '98-78-58-40-39-38-23-22-21', '98-78-58-39-40-38-23-22-21', '98-78-58-40-39-37-36-22-21'],
                 correctAnswer: '98-78-58-40-39-38-23-22-21'
             },
 
             {
-                question: 'Q24.<h8>Using the Key to Map Pages, Which pages will you need to use to plan the most direct route between </h8><b>junction2 of the M4 and junction 13 of the M25?</b>',
+                question: '<h8 style="font-size: 18px;">Q24.Using the Key to Map Pages, Which pages will you need to use to plan the most direct route between </h8><b style="font-size: 19px;">junction2 of the M4 and junction 13 of the M25?</b>',
                 type: 'radio',
                 options: ['87-86-85-107-84-83-105-104-126', '87-86-85-84-83-105-104-126', '87-86-85-107-84-83-104-105-126', '84-86-85-106-83-105-104-126'],
                 correctAnswer: '87-86-85-107-84-83-105-104-126'
@@ -677,14 +686,13 @@
 
 
             {
-                question: 'Q.25 <h8>Start from Junction 19, Travel 3 Streets North, 2 Streets East, 2 Streets South, 1 Street East,  1 Street West, 1 Street North. Which junction you are now?<h8>',
+                question: '<h8 style="font-size: 18px;">Q.25. Start from Junction 19, Travel 3 Streets North, 2 Streets East, 2 Streets South, 1 Street East,  1 Street West, 1 Street North. Which junction you are now?<h8>',
                 type: 'image',
-                imageUrl: 'image.jpg',
+             imageUrl:'http://121pcotraining.com/wp-content/uploads/2024/11/strart-junction-19-to-1-street-north.png',
                 options: ['junction9', 'junction17', 'junction15', 'junction12'],
-                correctAnswer: 'junction9'
+                correctAnswer: 'junction15'
             }
         ];
-
 
         let currentQuestionIndex = 0;
         let userAnswers = Array(questions.length).fill(null).map(() => ({
@@ -696,7 +704,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             displayQuestion(currentQuestionIndex);
-            startTimer(2700); // 45 minutes
+//             startTimer(1500); // 25 minutes
             createQuestionNavigationButtons();
             updateProgressBar();
 
@@ -726,7 +734,7 @@
                 question.options.forEach(option => {
                     const radioOption = document.createElement('div');
                     radioOption.classList.add('select-wrapper');
-                    radioOption.innerHTML = `<input type="radio" name="question${index}" value="${option}" id="radio${option}">
+                    radioOption.innerHTML = `<input type="radio" style="margin-right:10px" name="question${index}" value="${option}" id="radio${option}">
                                              <label for="radio${option}">${option}</label>`;
                     radioOptions.appendChild(radioOption);
                 });
@@ -736,7 +744,7 @@
                 question.options.forEach(option => {
                     const checkboxOption = document.createElement('div');
                     checkboxOption.classList.add('select-wrapper');
-                    checkboxOption.innerHTML = `<input type="checkbox" name="question${index}" value="${option}" id="checkbox${option}">
+                    checkboxOption.innerHTML = `<input type="checkbox" style="margin-right:10px" name="question${index}" value="${option}" id="checkbox${option}">
                                                 <label for="checkbox${option}">${option}</label>`;
                     checkboxOptions.appendChild(checkboxOption);
                 });
@@ -783,7 +791,7 @@
 
                 question.options.forEach(option => {
                     const radioOption = document.createElement('div');
-                    radioOption.innerHTML = `<input type="radio" name="question${index}" value="${option}"> <label>${option}</label>`;
+                    radioOption.innerHTML = `<input type="radio" style="margin-right:10px" name="question${index}" value="${option}"> <label>${option}</label>`;
                     questionContainer.appendChild(radioOption);
                 });
             }
@@ -795,10 +803,10 @@
             restoreUserAnswer(index); // Restore user's answer for the current question
         }
 
-        // Read PDF button click handler
-        document.getElementById('readPdfBtn').addEventListener('click', function() {
-            window.open('https://content.tfl.gov.uk/phv-driver-handbook-v1.pdf', '_blank');
-        });
+// // Read PDF button click handler
+//     document.getElementById('readPdfBtn').addEventListener('click', function() {
+//         window.open('https://content.tfl.gov.uk/phv-driver-handbook-v1.pdf', '_blank');
+//     });
 
         function showPreviousQuestion() {
             if (currentQuestionIndex > 0) {
@@ -1005,7 +1013,7 @@
         });
 
         function submitQuiz(event) {
-            if (event) event.preventDefault(); // Prevent default behavior
+            if (event) event.preventDefault();
             clearInterval(timerInterval);
             saveUserAnswer(currentQuestionIndex);
 
@@ -1015,70 +1023,107 @@
                     element.disabled = true;
                 }
             });
-            document.getElementById('progress-bar').style.pointerEvents = 'none';
-            document.getElementById('question-content').style.pointerEvents = 'none';
 
-            // Show results below the quiz instead of replacing the whole view
-            document.getElementById('result-section').style.display = 'block';
+            // Ensure the result section is visible
+            const resultSection = document.getElementById('result-section');
+            resultSection.style.display = 'block';
 
-            // Display all results
-            calculateResults();
+            // Clear any previous results or status
+            resultSection.innerHTML = '';
 
-            // Calculate and display the score
+            // Add Pass/Fail Status
             const score = calculateScore();
-            document.getElementById('score-display').innerHTML = `Your Score: ${score.toFixed(2)}%`;
+            const statusContainer = document.createElement('div');
+            statusContainer.style.display = 'flex';
+            statusContainer.style.justifyContent = 'center';
+            statusContainer.style.alignItems = 'center';
+            statusContainer.style.gap = '20px';
+            statusContainer.style.marginTop = '20px';
+
+            // Score Element
+            const scoreElement = document.createElement('div');
+            scoreElement.textContent = `Your Score: ${score.toFixed(2)}%`;
+            const instrucSection = document.getElementById('instruction');
+            instrucSection.innerHTML = '👆 Click on Reset Button if You Want to Retake';
+            scoreElement.style.fontSize = '24px';
+            scoreElement.style.fontWeight = 'bold';
+            scoreElement.style.color = '#2c3e50';
+            scoreElement.style.marginRight = '0px';
+            scoreElement.style.marginLeft = '-55%';
+            scoreElement.style.marginTop = '35px';
+
+            // Pass/Fail Status
+            const statusElement = document.createElement('div');
+            statusElement.style.fontSize = '17px';
+            statusElement.style.fontWeight = 'bold';
+            statusElement.style.padding = '5px';
+            statusElement.style.borderRadius = '5px';
+            statusElement.style.marginTop = '35px';
+
 
             if (score >= 60) {
-                document.getElementById('congratulations').style.display = 'block';
+                statusElement.textContent = '🎉 PASS 🎉';
+                statusElement.style.background = 'linear-gradient(90deg, #56ab2f, #a8e063)';
+                statusElement.style.color = 'white';
             } else {
-                document.getElementById('try-again').style.display = 'block';
+                statusElement.textContent = '❌ FAIL ❌';
+                statusElement.style.background = 'linear-gradient(90deg, #ff6e7f, #bfe9ff)';
+                statusElement.style.color = 'white';
             }
-        }
 
-        function calculateResults() {
-            const userAnswersContainer = document.getElementById('user-answers');
-            userAnswersContainer.innerHTML = '';
+            // Append Score and Status to Container
+            statusContainer.appendChild(scoreElement);
+            statusContainer.appendChild(statusElement);
+            resultSection.appendChild(statusContainer);
+
+            // Add Detailed Results
+            const userAnswersContainer = document.createElement('div');
+            userAnswersContainer.id = 'user-answers';
+            userAnswersContainer.style.marginTop = '20px';
 
             questions.forEach((question, index) => {
                 const userAnswer = userAnswers[index].userAnswer;
                 const isCorrect = userAnswers[index].isCorrect;
 
-                // Create a container for each result
+                // Result for each question
                 const resultItem = document.createElement('div');
                 resultItem.classList.add('result-item');
-                resultItem.innerHTML = `
-                    <h3>Question ${index + 1}</h3>
-                    <p><strong>Your Answer:</strong> ${
-                        Array.isArray(userAnswer) 
-                        ? userAnswer.join(', ') 
-                        : userAnswer ? JSON.stringify(userAnswer) : 'No answer selected'
-                    }</p>
-                    <p><strong>Correct Answer:</strong> ${
-                        Array.isArray(question.correctAnswer) 
-                        ? question.correctAnswer.join(', ') 
-                        : JSON.stringify(question.correctAnswer)
-                    }</p>
-                    <p style="font-weight: bold; color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '✔ Correct' : '✘ Incorrect'}</p>
-                `;
+                resultItem.innerHTML = `<hr>
+            <h3>Question ${index + 1}</h3>
+            <p><strong>Your Answer:</strong> ${
+                Array.isArray(userAnswer) 
+                ? userAnswer.join(', ') 
+                : userAnswer ? JSON.stringify(userAnswer) : 'No answer selected'
+            }</p>
+            <p><strong>Correct Answer:</strong> ${
+                Array.isArray(question.correctAnswer) 
+                ? question.correctAnswer.join(', ') 
+                : JSON.stringify(question.correctAnswer)
+            }</p>
+            <p style="font-weight: bold; color: ${isCorrect ? 'green' : 'red'};">
+                ${isCorrect ? '✔ Correct' : '✘ Incorrect'}
+            </p>
+        `;
                 userAnswersContainer.appendChild(resultItem);
             });
+
+            // Append User Answers to Result Section
+            resultSection.appendChild(userAnswersContainer);
         }
-
-        function startQuiz() {
-            document.getElementById('instruction-page').style.display = 'none'; // Hide the instruction page
-            document.getElementById('quiz-container').style.display = 'block'; // Show the quiz
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('quiz-container').style.display = 'none'; // Hide the quiz container initially
-        });
-
 
         function calculateScore() {
             const correctAnswersCount = userAnswers.filter(answer => answer.isCorrect).length;
             const totalQuestions = questions.length;
             return (correctAnswersCount / totalQuestions) * 100;
         }
+function startQuiz() {
+            document.getElementById('instruction-page').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+						document.getElementById('startQuizBtn').addEventListener ('click',startTimer(1500));
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('quiz-container').style.display = 'none';
+        });
     </script>
 </body>
 
